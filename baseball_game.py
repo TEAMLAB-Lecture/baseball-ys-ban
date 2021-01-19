@@ -5,7 +5,7 @@ import random
 
 def is_int(input_chr):
     tmp_code = ord(input_chr) - ord('0')
-    if tmp_code<=9 and tmp>=0:
+    if tmp_code<=9 and tmp_code>=0:
         return True
     return False
 
@@ -211,9 +211,10 @@ def get_strikes_or_ball(user_input_number, random_number):
         for j in range(i, 3):
             if user_input_number[i]==random_number[j]:
                 if i==j:
-                    result[0] += 1
+                    result[0] = result[0]+1
                 else :
-                    result[1] += 1
+                    result[1] = result[1]+1
+    
     # ==================================
     return result
 
