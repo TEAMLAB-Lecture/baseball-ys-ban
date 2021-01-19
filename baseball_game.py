@@ -101,14 +101,14 @@ def is_duplicated_number(three_digit):
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
 
-    result = True
+    result = False
     three_digit = int(three_digit)
     check = [False, False, False, False, False, False, False, False, False, False]
     while three_digit!=0 :
         now_digit = three_digit%10
         three_digit = int(three_digit//10)
         if check[now_digit]:
-            result = False
+            result = True
             break
         else :
             check[now_digit] = True
