@@ -102,16 +102,15 @@ def is_duplicated_number(three_digit):
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
 
     result = False
-    three_digit = int(three_digit)
+    str_digit = str(three_digit)
     check = [False, False, False, False, False, False, False, False, False, False]
-    while three_digit!=0 :
-        now_digit = three_digit%10
-        three_digit = int(three_digit//10)
-        if check[now_digit]:
+    for i in range(3):
+        i_th = ord(str_digit[i])-ord('0')
+        if check[i_th]:
             result = True
             break
         else :
-            check[now_digit] = True
+            check[i_th] = True
     # ==================================
     return result
 
@@ -143,7 +142,7 @@ def is_validated_number(user_input_number):
         return False
     if not is_between_100_and_999(user_input_number):
         return False
-    if not is_duplicated_number(user_input_number):
+    if is_duplicated_number(user_input_number):
         return False
     # ==================================
     return result
@@ -170,9 +169,9 @@ def get_not_duplicated_three_digit_number():
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
     # get_random_number() 함수를 사용하여 random number 생성
-    while True :
+    while 1 :
         result = get_random_number()
-        if is_duplicated_number(result):
+        if not is_duplicated_number(result):
             break
     # ==================================
     return result
@@ -208,14 +207,13 @@ def get_strikes_or_ball(user_input_number, random_number):
 
     result = [0, 0]
     str_ran_num = str(random_number)
-    for i in range(0, 3):
-        for j in range(i, 3):
+    for i in range(3):
+        for j in range(3):
             if user_input_number[i]==str_ran_num[j]:
                 if i==j:
-                    result[0] = result[0]+1
+                    result[0] += 1
                 else :
-                    result[1] = result[1]+1
-    
+                    result[1] += 1
     # ==================================
     return result
 
