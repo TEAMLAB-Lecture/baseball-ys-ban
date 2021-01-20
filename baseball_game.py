@@ -207,9 +207,10 @@ def get_strikes_or_ball(user_input_number, random_number):
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
 
     result = [0, 0]
+    str_ran_num = str(random_number)
     for i in range(0, 3):
         for j in range(i, 3):
-            if user_input_number[i]==random_number[j]:
+            if user_input_number[i]==str_ran_num[j]:
                 if i==j:
                     result[0] = result[0]+1
                 else :
@@ -290,8 +291,30 @@ def main():
     print("Random Number is : ", random_number)
     # ===Modify codes below=============
     # 위의 코드를 포함하여 자유로운 수정이 가능함
-
-
+    gonnna_end = False
+    while 1:
+        guess_num = input("Input guess number : ")
+        if guess_num=='0':
+            break
+        if not is_validated_number(guess_num):
+            print("Wrong Input, Input again")
+            continue
+        s_or_b = get_strikes_or_ball(guess_num, random_number)
+        print("Strikes : {0} , Balls : {1}".format(s_or_b[0], s_or_b[1]))
+        if s_or_b[0]==3:
+            while 1:
+                y_or_n = input("You win, one more(Y/N)?")
+                if is_yes(y_or_n):
+                    random_number = str(get_not_duplicated_three_digit_number())
+                    print("Random Number is : ", random_number)
+                    break
+                elif is_no(y_or_n):
+                    gonnna_end = True
+                    break
+                else :
+                    print("Wrong Input, Input again")
+        if gonnna_end:
+            break
     # ==================================
     print("Thank you for using this program")
     print("End of the Game")
